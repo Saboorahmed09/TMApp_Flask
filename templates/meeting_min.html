@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+        <h2>Meeting Minutes</h2>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Add Meeting Minutes</h2>
+                <form>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-3 text-end fw-bold">Title:</td>
+                            <td class="col-md-9">
+                                <input type="text" class="form-control" id="meetingTitle" placeholder="Enter meeting title" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end fw-bold">Organizer:</td>
+                            <td>
+                                <input type="text" class="form-control" id="organizer" placeholder="Enter organizer" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end fw-bold">Speaker:</td>
+                            <td>
+                                <input type="text" class="form-control" id="speaker" placeholder="Enter speaker" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end fw-bold">Date:</td>
+                            <td>
+                                <input type="date" class="form-control" id="meetingDate" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end fw-bold">Day:</td>
+                            <td>
+                                <input type="text" class="form-control" id="meetingDay" placeholder="Enter meeting day" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end fw-bold">Details:</td>
+                            <td>
+                                <textarea class="form-control" id="meetingDetails" rows="3" placeholder="Enter meeting details" required></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

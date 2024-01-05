@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My World Org</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+    <!-- Add these links in the head section of your HTML file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+ 
+    <!-- Add custom styles -->
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    header {
+        background-color: #6c757d;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    footer {
+        background-color: #6c757d;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+/* Add pastel background color to form */
+#registrationForm {
+    background-color: #f0e5e5; /* Replace with your preferred pastel color */
+}
+
+/* Style for labels */
+.form-label {
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+/* Style for form fields */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+/* Style for submit button */
+.btn-secondary {
+    background-color: #8fb5d0; /* Replace with your preferred pastel color */
+    color: #fff;
+    border: 1px solid #8fb5d0; /* Border color similar to background color */
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #6a8aa3; /* Slightly darker color on hover */
+}
+
+</style>
+
+</head>
+<body>
+    <header>
+        <h1>Flask Organization</h1>
+    </header>
+
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Content from other pages will be loaded here -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Your footer content goes here -->
+        &copy; 2022 Your Organization
+    </footer>
+
+    <!-- Add Bootstrap JS and Popper.js scripts after jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

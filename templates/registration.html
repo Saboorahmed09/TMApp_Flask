@@ -1,0 +1,203 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Registration</h2>
+                        <form class="table" id="registrationForm">
+                            <tbody>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="firstName">First Name:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" aria-label="First name" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="lastName">Last Name:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" aria-label="Last name" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="email">Email:</label>
+                                    </td>
+                                    <td>
+                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" aria-label="Email" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="phone">Phone Number:</label>
+                                    </td>
+                                    <td>
+                                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" aria-label="Phone number" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="dob">Date of Birth:</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control" id="dob" aria-label="Date of birth" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="password">Password:</label>
+                                    </td>
+                                    <td>
+                                        <input type="password" class="form-control" id="password" placeholder="Enter your password" aria-label="Password" required>
+                                        <small class="text-muted">Password must be at least 8 characters long.</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="confirmPassword">Confirm Password:</label>
+                                    </td>
+                                    <td>
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" aria-label="Confirm Password" required>
+                                        <div class="invalid-feedback" id="passwordMismatchFeedback">
+                                            Passwords do not match.
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="inputAddress">Address:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address" aria-label="inputAddress" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="inputAddress2">Address 2:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" aria-label="inputAddress2">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="inputCity">City:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="inputCity" placeholder="Enter your city" aria-label="inputCity" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="inputState">State:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="inputState" placeholder="Enter your state" aria-label="inputState" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-label">
+                                        <label for="inputZip">Zip:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="inputZip" placeholder="Enter your zip code" aria-label="inputZip" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <br/>
+                                        <button type="submit" class="btn btn-secondary">Sign up</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('registrationForm');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const passwordMismatchFeedback = document.getElementById('passwordMismatchFeedback');
+
+            function validatePasswordMatch() {
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    confirmPasswordInput.setCustomValidity('Password mismatch');
+                    passwordMismatchFeedback.style.display = 'block';
+                } else {
+                    confirmPasswordInput.setCustomValidity('');
+                    passwordMismatchFeedback.style.display = 'none';
+                }
+            }
+
+            passwordInput.addEventListener('input', function () {
+                validatePasswordMatch();
+                updatePasswordStrengthMeter(calculatePasswordStrength(passwordInput.value));
+            });
+
+            confirmPasswordInput.addEventListener('input', function () {
+                validatePasswordMatch();
+            });
+
+            form.addEventListener('input', function (event) {
+                const input = event.target;
+
+                if (input.checkValidity()) {
+                    input.classList.add('is-valid');
+                    input.classList.remove('is-invalid');
+                } else {
+                    input.classList.add('is-invalid');
+                    input.classList.remove('is-valid');
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                const inputs = form.querySelectorAll('input');
+
+                inputs.forEach(function (input) {
+                    if (!input.checkValidity()) {
+                        input.classList.add('is-invalid');
+                    }
+                });
+
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            });
+        });
+
+        function calculatePasswordStrength(password) {
+            // Implement your password strength calculation logic here
+            // Return a value between 0 and 100 representing the password strength
+            return Math.min(password.length / 8 * 100, 100); // Example value based on length
+        }
+
+        function updatePasswordStrengthMeter(strength) {
+            const passwordStrength = document.getElementById('passwordStrength');
+            const passwordStrengthText = document.getElementById('passwordStrengthText');
+
+            passwordStrength.style.width = strength + '%';
+            passwordStrength.setAttribute('aria-valuenow', strength);
+
+            // Update the strength text based on the strength value
+            if (strength < 30) {
+                passwordStrengthText.textContent = 'Weak';
+            } else if (strength < 70) {
+                passwordStrengthText.textContent = 'Moderate';
+            } else {
+                passwordStrengthText.textContent = 'Strong';
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+        <h2>View Tasks</h2>
+
+        {% if tasks %}
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Assigned User</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Task Type</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Completion (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.name }}</td>
+                            <td>{{ task.user }}</td>
+                            <td>{{ task.details }}</td>
+                            <td>{{ task.task_type }}</td>
+                            <td>{{ task.priority }}</td>
+                            <td>{{ task.start_date }}</td>
+                            <td>{{ task.end_date }}</td>
+                            <td>{{ task.status }}</td>
+                            <td>{{ task.completion }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No tasks available.</p>
+        {% endif %}
+    </div>
+{% endblock %}
